@@ -1,15 +1,7 @@
 {
   "todo": [],
   "done": [],
-  "progress": [
-    {
-      "description": "ah que ",
-      "startDate": "2020-09-11T20:44:59.162Z",
-      "member": "Jose Fragoso",
-      "type": "progress",
-      "id": 1
-    }
-  ],
+  "progress": [],
   "members": [
     {
       "id": 1,
