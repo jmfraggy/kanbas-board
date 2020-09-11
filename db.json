@@ -1,0 +1,30 @@
+{
+  "todo": [],
+  "done": [],
+  "progress": [
+    {
+      "description": "ah que ",
+      "startDate": "2020-09-11T20:44:59.162Z",
+      "member": "Jose Fragoso",
+      "type": "progress",
+      "id": 1
+    }
+  ],
+  "members": [
+    {
+      "id": 1,
+      "firstName": "José",
+      "lastName": "Fraggy"
+    },
+    {
+      "id": 2,
+      "firstName": "Marco",
+      "lastName": "Guzmán"
+    },
+    {
+      "id": 3,
+      "firstName": "Karen",
+      "lastName": "González"
+    }
+  ]
+}
