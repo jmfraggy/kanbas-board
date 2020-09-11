@@ -21,7 +21,7 @@ Link to the deployed version.
 `"json-server": "json-server --watch db.json --port 5000"` <br/>
 `"dev": "concurrently \"npm start \" \"npm run json-server\""` <br/>
 `"proxy": "http://localhost:5000"` <br/>
-
+`"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"`
 
 ## Contributing 📖
 

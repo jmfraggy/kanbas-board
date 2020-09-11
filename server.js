@@ -5,6 +5,8 @@ const server = jsonServer.create();
 const router = jsonServer.router('db.json');
 const middlewares = jsonServer.defaults();
 
+const app = express();
+
 server.use(middlewares);
 server.use(router);
 
