@@ -4,7 +4,7 @@ Application that allows the user to manage task cards.
 
 ## Deployed Version 📦
 
-Try the [live](https://nameless-wave-99131.herokuapp.com/) version, deployedn in heroku.
+ [Try the deployed version in Heroku](https://nameless-wave-99131.herokuapp.com/)
 
 ## Stack & Dependencies 🔧
 
