@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { addTodo, addProgress, addDone } from '../../actions/listActions';
+import { addTodo, addProgress, addDone } from '../../store/actions/listActions';
 
+// Materialize
 import M from 'materialize-css/dist/js/materialize.min.js';
 
 const AddListModal = ({ addTodo, addProgress, addDone }) => {
-
-    const [description, setDescription] = useState('');
-    const [member, setMember] = useState('');
+    
+      const [description, setDescription] = useState('');
+    // const [member, setMember] = useState('');
     const [type, setType] = useState('');
 
     const onSubmit = () => {
         // Validation
         if (description === "") {
             M.toast({ html: 'Please enter a description' });
-        } else if (member === "") {
-            M.toast({ html: 'Please enter a member' });
+        } else if (type === "") {
+            M.toast({ html: 'Please enter a type' });
         } else {
             const newList = {
                 description,
                 startDate: new Date(),
-                member,
                 type
             };
             if(type === 'todo') {
@@ -37,7 +37,7 @@ const AddListModal = ({ addTodo, addProgress, addDone }) => {
 
             // Clear Fields
             setDescription('');
-            setMember('');
+            // setMember('');
         }
     };
 
@@ -65,7 +65,7 @@ const AddListModal = ({ addTodo, addProgress, addDone }) => {
                     </div>
                 </div>
 
-                <div className="row">
+                {/* <div className="row">
                     <div className="input-field">
                         <select
                             name="member"
@@ -78,7 +78,7 @@ const AddListModal = ({ addTodo, addProgress, addDone }) => {
                             <option value="Karen Gonzalez"> Karen Gonzalez </option>
                         </select>
                     </div>
-                </div>
+                </div> */}
 
             </div>
 

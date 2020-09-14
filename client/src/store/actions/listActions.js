@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 import {
     GET_TODOS,
     ADD_TODO,
@@ -16,6 +18,7 @@ import {
 
     SET_CURRENT,
     CLEAR_CURRENT,
+    CLEAR_LISTS,
     SET_LOADING,
     LISTS_ERROR
 } from './types';
@@ -25,44 +28,36 @@ import {
 export const getTodos = () => async dispatch =>{
     try {
         setLoading();
-        const res = await fetch('/todo');
-        const data = await res.json();
-
+        const res = await axios.get('/api/todos');
         dispatch({
             type: GET_TODOS,
-            payload: data
+            payload: res.data
         });
-
     } catch (error) {
         dispatch({
             type: LISTS_ERROR,
-            payload: error.response.data
+            payload: error
         });
     }
 };
 
 // Add new Todo Card
 export const addTodo = (card) => async dispatch =>{
+    const config = {
+        headers: { 'Content-Type': 'application/json'}
+    }
     try {
         setLoading();
-        const res = await fetch('/todo', {
-            method: 'POST',
-            body: JSON.stringify(card),
-            headers: {
-                'Content-Type': 'application/json'
-            } 
-        });
-        const data = await res.json();
-
+        const res = await axios.post('/api/todos', card, config);
         dispatch({
             type: ADD_TODO,
-            payload: data
+            payload: res.data
         });
-
     } catch (error) {
+        console.log(error);
         dispatch({
             type: LISTS_ERROR,
-            payload: error.response.data
+            payload: error
         });
     }
 };
@@ -71,45 +66,35 @@ export const addTodo = (card) => async dispatch =>{
 export const deleteTodo = id => async dispatch =>{
     try {
         setLoading();
-        await fetch(`/todo/${id}`, {
-            method: 'DELETE'
-        });
-
+        await axios.delete(`/api/todos/${id}`);
         dispatch({
             type: DELETE_TODO,
             payload: id
         });
-
     } catch (error) {
         dispatch({
             type: LISTS_ERROR,
-            payload: error.response.data
+            payload: error
         });
     }
 };
 
 // Update Todo Card on Server
 export const updateTodo = card => async dispatch =>{
+    const config = {
+        headers: { 'Content-Type': 'application/json' }
+    }
     try {
         setLoading();
-        const res = await fetch(`/todo/${card.id}`, {
-            method: 'PUT',
-            body: JSON.stringify(card),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const data = await res.json();
-
+        const res = await axios.put(`/api/todos/${card._id}`, card, config);
         dispatch({
             type: UPDATE_TODO,
-            payload: data
+            payload: res.data
         });
-
     } catch (error) {
         dispatch({
             type: LISTS_ERROR,
-            payload: error.response.data
+            payload: error
         });
     }
 };
@@ -120,44 +105,36 @@ export const updateTodo = card => async dispatch =>{
 export const getProgresses = () => async dispatch =>{
     try {
         setLoading();
-        const res = await fetch('/progress');
-        const data = await res.json();
-
+        const res = await axios.get('/api/progresses');
         dispatch({
             type: GET_PROGRESSES,
-            payload: data
+            payload: res.data
         });
-
     } catch (error) {
         dispatch({
             type: LISTS_ERROR,
-            payload: error.response.data
+            payload: error
         });
     }
 };
 
 // Add new Progress Card
 export const addProgress = (card) => async dispatch =>{
+    const config = {
+        headers: { 'Content-Type': 'application/json'}
+    }
     try {
         setLoading();
-        const res = await fetch('/progress', {
-            method: 'POST',
-            body: JSON.stringify(card),
-            headers: {
-                'Content-Type': 'application/json'
-            } 
-        });
-        const data = await res.json();
-
+        const res = await axios.post('/api/progresses', card, config);
         dispatch({
             type: ADD_PROGRESS,
-            payload: data
+            payload: res.data
         });
-
     } catch (error) {
+        console.log(error);
         dispatch({
             type: LISTS_ERROR,
-            payload: error.response.data
+            payload: error
         });
     }
 };
@@ -166,45 +143,35 @@ export const addProgress = (card) => async dispatch =>{
 export const deleteProgress = id => async dispatch =>{
     try {
         setLoading();
-        await fetch(`/progress/${id}`, {
-            method: 'DELETE'
-        });
-
+        await axios.delete(`/api/progresses/${id}`);
         dispatch({
             type: DELETE_PROGRESS,
             payload: id
         });
-
     } catch (error) {
         dispatch({
             type: LISTS_ERROR,
-            payload: error.response.data
+            payload: error
         });
     }
 };
 
 // Update Progress Card on Server
 export const updateProgress = card => async dispatch =>{
+    const config = {
+        headers: { 'Content-Type': 'application/json' }
+    }
     try {
         setLoading();
-        const res = await fetch(`/progress/${card.id}`, {
-            method: 'PUT',
-            body: JSON.stringify(card),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const data = await res.json();
-
+        const res = await axios.put(`/api/progresses/${card._id}`, card, config);
         dispatch({
             type: UPDATE_PROGRESS,
-            payload: data
+            payload: res.data
         });
-
     } catch (error) {
         dispatch({
             type: LISTS_ERROR,
-            payload: error.response.data
+            payload: error
         });
     }
 };
@@ -215,44 +182,36 @@ export const updateProgress = card => async dispatch =>{
 export const getDones = () => async dispatch =>{
     try {
         setLoading();
-        const res = await fetch('/done');
-        const data = await res.json();
-
+        const res = await axios.get('/api/dones');
         dispatch({
             type: GET_DONES,
-            payload: data
+            payload: res.data
         });
-
     } catch (error) {
         dispatch({
             type: LISTS_ERROR,
-            payload: error.response.data
+            payload: error
         });
     }
 };
 
 // Add new Done Card
 export const addDone = (card) => async dispatch =>{
+    const config = {
+        headers: { 'Content-Type': 'application/json'}
+    }
     try {
         setLoading();
-        const res = await fetch('/done', {
-            method: 'POST',
-            body: JSON.stringify(card),
-            headers: {
-                'Content-Type': 'application/json'
-            } 
-        });
-        const data = await res.json();
-
+        const res = await axios.post('/api/dones', card, config);
         dispatch({
             type: ADD_DONE,
-            payload: data
+            payload: res.data
         });
-
     } catch (error) {
+        console.log(error);
         dispatch({
             type: LISTS_ERROR,
-            payload: error.response.data
+            payload: error
         });
     }
 };
@@ -261,45 +220,35 @@ export const addDone = (card) => async dispatch =>{
 export const deleteDone = id => async dispatch =>{
     try {
         setLoading();
-        await fetch(`/done/${id}`, {
-            method: 'DELETE'
-        });
-
+        await axios.delete(`/api/dones/${id}`);
         dispatch({
             type: DELETE_DONE,
             payload: id
         });
-
     } catch (error) {
         dispatch({
             type: LISTS_ERROR,
-            payload: error.response.data
+            payload: error
         });
     }
 };
 
 // Update Done Card on Server
 export const updateDone = card => async dispatch =>{
+    const config = {
+        headers: { 'Content-Type': 'application/json' }
+    }
     try {
         setLoading();
-        const res = await fetch(`/done/${card.id}`, {
-            method: 'PUT',
-            body: JSON.stringify(card),
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
-        const data = await res.json();
-
+        const res = await axios.put(`/api/dones/${card._id}`, card, config);
         dispatch({
             type: UPDATE_DONE,
-            payload: data
+            payload: res.data
         });
-
     } catch (error) {
         dispatch({
             type: LISTS_ERROR,
-            payload: error.response.data
+            payload: error
         });
     }
 };
@@ -316,6 +265,13 @@ export const setCurrent = card => {
 export const clearCurrent = () => {
     return {
         type: CLEAR_CURRENT
+    }
+};
+
+// Clear Lists
+export const clearLists = () => {
+    return {
+        type: CLEAR_LISTS
     }
 };
 

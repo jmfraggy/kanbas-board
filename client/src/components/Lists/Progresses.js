@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getProgresses } from '../actions/listActions';
+import { getProgresses } from '../../store/actions/listActions';
 
 import Card from './Card';
-import Loader from './layout/Loader';
+import Loader from '../layout/Loader';
 
 const Progresses = ({ progresses: { progress, loading}, getProgresses }) => {
 
@@ -23,7 +23,7 @@ const Progresses = ({ progresses: { progress, loading}, getProgresses }) => {
                 <h4 className="center">In Progress</h4>
             </li>
             {!loading && progress.length === 0 ? (<p className="center">Empty</p>) : (
-                progress.map(el => <Card key={el.id} el={el} />)
+                progress.map(el => <Card key={el._id} el={el} />)
             )}
         </ul>
     )

@@ -460,21 +460,6 @@ table th {
     font-size: 1rem;
   }
 
-  /* Navbar */
-  .navbar {
-    display: block;
-    text-align: center;
-    padding: 0;
-  }
-
-  .navbar h1 {
-    margin-bottom: 0.6rem;
-  }
-
-  .navbar ul {
-    text-align: center;
-    justify-content: center;
-  }
 }
 
 .tabs .indicator{
@@ -493,6 +478,10 @@ input:focus {
 
 select:focus {
   border: 1px solid #651fff !important;
+}
+
+.modal .modal-footer {
+  height: 100% !important;
 }
 
 @media only screen and (max-width: 992px) {
@@ -570,4 +559,23 @@ select:focus {
   .overlay {
     display: none;
   }
+}
+
+/* Not Wide Styles */
+@media (min-width: 701px) and (max-width: 1320px) {
+  .grid-3{
+    grid-template-columns: repeat(2, 1fr);  
+  }
+}
+
+#add-list-modal {
+  height: auto !important;
+}
+
+#edit-list-modal {
+  height: auto !important;
+}
+
+.card-register {
+  padding: 3rem !important;
 }

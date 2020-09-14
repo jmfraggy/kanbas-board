@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { getDones } from '../actions/listActions';
+import { getDones } from '../../store/actions/listActions';
 
 import Card from './Card';
-import Loader from './layout/Loader';
+import Loader from '../layout/Loader';
 
 const Dones = ({ dones: { done, loading}, getDones }) => {
 
@@ -23,7 +23,7 @@ const Dones = ({ dones: { done, loading}, getDones }) => {
                 <h4 className="center">Done</h4>
             </li>
             {!loading && done.length === 0 ? (<p className="center">Empty</p>) : (
-                done.map(el => <Card key={el.id} el={el} />)
+                done.map(el => <Card key={el._id} el={el} />)
             )}
         </ul>
     )

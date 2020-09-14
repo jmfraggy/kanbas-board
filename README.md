@@ -9,12 +9,21 @@ Link to the deployed version.
 ## Stack & Dependencies 🔧
 
 * [React](https://github.com/facebook/create-react-app) - Client Views.
-* [json-server](https://github.com/typicode/json-server) - Fake REST API
 * [Materialize](https://github.com/Dogfalo/materialize) - CSS Framework 
 * [Material Design Icons](https://github.com/google/material-design-icons) - Icons
 * [Redux](https://github.com/reduxjs/redux)- State manager
 * [react-redux](https://github.com/reduxjs/react-redux) - Connect react with redux
 * [redux-thunk](https://github.com/reduxjs/redux-thunk) - Middleware for async actions
+
+* [bcryptjs]() - Hashing passwords
+* [jsonwebtoken]() - Tokens
+* [config]() - Global variables
+* [mongoose]() - Mongoose
+
+
+* [nodemon]() - Run Dev Changes
+* [concurrently]() - Run Back, and Front
+
 
 ## Package Changes 📁
 

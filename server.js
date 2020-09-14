@@ -1,14 +1,22 @@
 const express = require('express');
+const connectDB = require('./config/db');
 const path = require('path');
-const jsonServer = require('json-server');
-const server = jsonServer.create();
-const router = jsonServer.router('db.json');
-const middlewares = jsonServer.defaults();
 
 const app = express();
 
-server.use(middlewares);
-server.use(router);
+// Connect MongoDB
+connectDB();
+
+// Init Middleware
+app.use(express.json({ extended: false }));
+
+// Define Routes
+app.use('/api/users', require('./routes/users'));
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/todos', require('./routes/todos'));
+app.use('/api/progresses', require('./routes/progresses'));
+app.use('/api/dones', require('./routes/dones'));
+app.use('/api/members', require('./routes/members'));
 
 // Serve static assets in production 
 if (process.env.NODE_ENV === 'production') {
@@ -19,5 +27,10 @@ if (process.env.NODE_ENV === 'production') {
         'index.html')));
 }
 
-const port = process.env.PORT || 5000;
-server.listen(port);
+const PORT = process.env.PORT || 5000;
+
+// To clean the Port
+// lsof -n -i4TCP:5000
+// sudo kill -9 PID
+
+app.listen(PORT, () => { console.log(`Server Started on port ${PORT}`) });

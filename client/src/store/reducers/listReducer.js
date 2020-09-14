@@ -16,6 +16,7 @@ import {
 
     SET_CURRENT,
     CLEAR_CURRENT,
+    CLEAR_LISTS,
     SET_LOADING,
     LISTS_ERROR
 } from '../actions/types';
@@ -46,13 +47,15 @@ export default (state = initialState, action) => {
         case DELETE_TODO:
             return {
                 ...state,
-                todo: state.todo.filter(card => card.id !== action.payload),
+                todo: state.todo.filter(card => card._id !== action.payload),
                 loading: false
             };
         case UPDATE_TODO:
+            console.log(action.payload);
             return {
                 ...state,
-                todo: state.todo.map(card => card.id === action.payload.id ? action.payload : card)
+                todo: state.todo.map(card => card._id === action.payload._id ? action.payload : card),
+                loading: false
             };
 
         case GET_PROGRESSES:
@@ -70,13 +73,14 @@ export default (state = initialState, action) => {
         case DELETE_PROGRESS:
             return {
                 ...state,
-                progress: state.progress.filter(card => card.id !== action.payload),
+                progress: state.progress.filter(card => card._id !== action.payload),
                 loading: false
             };
         case UPDATE_PROGRESS:
             return {
                 ...state,
-                progress: state.progress.map(card => card.id === action.payload.id ? action.payload : card)
+                progress: state.progress.map(card => card._id === action.payload._id ? action.payload : card),
+                loading: false
             };
 
         case GET_DONES:
@@ -94,13 +98,14 @@ export default (state = initialState, action) => {
         case DELETE_DONE:
             return {
                 ...state,
-                done: state.done.filter(card => card.id !== action.payload),
+                done: state.done.filter(card => card._id !== action.payload),
                 loading: false
             };
         case UPDATE_DONE:
             return {
                 ...state,
-                done: state.done.map(card => card.id === action.payload.id ? action.payload : card)
+                done: state.done.map(card => card._id === action.payload._id ? action.payload : card),
+                loading: false
             };
 
         case SET_CURRENT:
@@ -113,6 +118,16 @@ export default (state = initialState, action) => {
                 ...state,
                 current: null
             };
+        case CLEAR_LISTS:
+            return {
+                ...state,
+                todo: null,
+                progress: null,
+                done: null,
+                current: null,
+                loading: false,
+                error: null,
+            }
         case SET_LOADING:
             return {
                 ...state,

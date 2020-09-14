@@ -1,34 +1,33 @@
 import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { 
-    deleteTodo, 
-    updateTodo, 
-    deleteProgress, 
+import {
+    deleteTodo,
+    updateTodo,
+    deleteProgress,
     updateProgress,
     deleteDone,
-    updateDone 
-} from '../../actions/listActions';
+    updateDone
+} from '../../store/actions/listActions';
 
 import M from 'materialize-css/dist/js/materialize.min.js';
 
-const EditListModal = ({ 
-    current, 
-    deleteTodo, 
-    updateTodo, 
-    deleteProgress, 
+const EditListModal = ({
+    current,
+    deleteTodo,
+    updateTodo,
+    deleteProgress,
     updateProgress,
     deleteDone,
-    updateDone  
+    updateDone
 }) => {
 
     const [description, setDescription] = useState('');
-    const [member, setMember] = useState('');
 
     useEffect(() => {
+        // Initialize Materialize JS
         if (current) {
             setDescription(current.description);
-            setMember(current.member);
         }
     }, [current]);
 
@@ -36,37 +35,33 @@ const EditListModal = ({
         // Validation
         if (description === "") {
             M.toast({ html: 'Please enter a description' });
-        } else if (member === "") {
-            M.toast({ html: 'Please enter a member' });
         } else {
             const updateCard = {
-                id: current.id,
+                _id: current._id,
                 description,
-                member,
                 type: current.type,
                 startDate: new Date()
             }
-            if(current.type === 'todo') {
+            if (current.type === 'todo') {
                 updateTodo(updateCard);
-            } else if(current.type === 'progress') {
+            } else if (current.type === 'progress') {
                 updateProgress(updateCard);
-            } else if(current.type === 'done') {
+            } else if (current.type === 'done') {
                 updateDone(updateCard);
             }
             M.toast({ html: 'List has been updated' });
             // Clear Fields
             setDescription('');
-            setMember('');
         }
     };
 
     const onDelete = () => {
-        if(current.type === 'todo') {
-            deleteTodo(current.id); // Check for this id
-        } else if(current.type === 'progress') {
-            deleteProgress(current.id);
-        } else if(current.type === 'done') {
-            deleteDone(current.id);
+        if (current.type === 'todo') {
+            deleteTodo(current._id); // Check for this id
+        } else if (current.type === 'progress') {
+            deleteProgress(current._id);
+        } else if (current.type === 'done') {
+            deleteDone(current._id);
         }
         M.toast({ html: 'Card Deleted' });
     };
@@ -87,7 +82,7 @@ const EditListModal = ({
                     </div>
                 </div>
 
-                <div className="row">
+                {/* <div className="row">
                     <div className="input-field">
                         <select
                             name="member"
@@ -99,7 +94,7 @@ const EditListModal = ({
                             <option value="Marco Guzman"> Marco Guzman </option>
                         </select>
                     </div>
-                </div>
+                </div> */}
 
             </div>
 
@@ -131,9 +126,9 @@ EditListModal.protoTypes = {
     current: PropTypes.object.isRequired,
     deleteList: PropTypes.func.isRequired,
     updateList: PropTypes.func.isRequired,
-    deleteProgress: PropTypes.func.isRequired, 
+    deleteProgress: PropTypes.func.isRequired,
     updateProgress: PropTypes.func.isRequired,
-    deleteDone: PropTypes.func.isRequired, 
+    deleteDone: PropTypes.func.isRequired,
     updateDone: PropTypes.func.isRequired
 };
 
@@ -141,9 +136,9 @@ const mapStateToProps = state => ({
     current: state.list.current,
 });
 
-export default connect(mapStateToProps, { 
-    deleteTodo, 
-    updateTodo, 
+export default connect(mapStateToProps, {
+    deleteTodo,
+    updateTodo,
     deleteProgress,
     updateProgress,
     deleteDone,
