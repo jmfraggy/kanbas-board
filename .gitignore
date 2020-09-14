@@ -7,7 +7,6 @@
 .pnp.js
 
 config/default.json
-config/production.json
 
 /client/build
 
